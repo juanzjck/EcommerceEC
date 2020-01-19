@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1bf30da695684f7bbdfeb584eefb6caf" Name="Diagram1" ZoomLevel="94">
+        <EntityTypeShape EntityType="EcommerceECDBModel.Category_" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceECDBModel.Customer_" Width="1.5" PointX="0.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceECDBModel.Editorial_" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceECDBModel.Order_" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceECDBModel.Order_Detail" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceECDBModel.Product_" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceECDBModel.Product_Category_Detail" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceECDBModel.User_" Width="1.5" PointX="5.75" PointY="7" IsExpanded="true" />
+        <AssociationConnector Association="EcommerceECDBModel.FK__Product_C__idCat__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceECDBModel.FK__Order___idCustom__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceECDBModel.FK__Product___idEdit__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceECDBModel.FK__Order_Det__idOrd__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceECDBModel.FK__Order_Det__idPro__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceECDBModel.FK__Product_C__idPro__412EB0B6" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

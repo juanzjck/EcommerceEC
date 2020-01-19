@@ -1,0 +1,490 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EcommerceECDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Category_">
+          <Key>
+            <PropertyRef Name="idCategory" />
+          </Key>
+          <Property Name="idCategory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="categoryName" Type="varchar" MaxLength="50" />
+          <Property Name="categoryDescripton" Type="varchar" MaxLength="70" />
+        </EntityType>
+        <EntityType Name="Customer_">
+          <Key>
+            <PropertyRef Name="idCustomer" />
+          </Key>
+          <Property Name="idCustomer" Type="int" Nullable="false" />
+          <Property Name="userName" Type="varchar" MaxLength="40" />
+          <Property Name="firstName" Type="varchar" MaxLength="50" />
+          <Property Name="lastName" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Editorial_">
+          <Key>
+            <PropertyRef Name="idEditorial" />
+          </Key>
+          <Property Name="idEditorial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order_">
+          <Key>
+            <PropertyRef Name="idOrder" />
+          </Key>
+          <Property Name="idOrder" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCustomer" Type="int" />
+        </EntityType>
+        <EntityType Name="Order_Detail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idOrder" Type="int" />
+          <Property Name="idProduct" Type="int" />
+          <Property Name="quantity" Type="int" />
+        </EntityType>
+        <EntityType Name="Product_">
+          <Key>
+            <PropertyRef Name="idProduct" />
+          </Key>
+          <Property Name="idProduct" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="productName" Type="varchar" MaxLength="50" />
+          <Property Name="Sku" Type="varchar" MaxLength="40" />
+          <Property Name="stock" Type="int" />
+          <Property Name="productDescription" Type="varchar" MaxLength="70" />
+          <Property Name="productImage" Type="image" />
+          <Property Name="idEditorial" Type="int" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Product_Category_Detail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCategory" Type="int" />
+          <Property Name="idProduct" Type="int" />
+        </EntityType>
+        <EntityType Name="User_">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userName" Type="varchar" MaxLength="40" />
+          <Property Name="firstName" Type="varchar" MaxLength="50" />
+          <Property Name="lastName" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="passwordUser" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__Order___idCustom__45F365D3">
+          <End Role="Customer_" Type="Self.Customer_" Multiplicity="0..1" />
+          <End Role="Order_" Type="Self.Order_" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer_">
+              <PropertyRef Name="idCustomer" />
+            </Principal>
+            <Dependent Role="Order_">
+              <PropertyRef Name="idCustomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order_Det__idOrd__48CFD27E">
+          <End Role="Order_" Type="Self.Order_" Multiplicity="0..1" />
+          <End Role="Order_Detail" Type="Self.Order_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order_">
+              <PropertyRef Name="idOrder" />
+            </Principal>
+            <Dependent Role="Order_Detail">
+              <PropertyRef Name="idOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order_Det__idPro__49C3F6B7">
+          <End Role="Product_" Type="Self.Product_" Multiplicity="0..1" />
+          <End Role="Order_Detail" Type="Self.Order_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_">
+              <PropertyRef Name="idProduct" />
+            </Principal>
+            <Dependent Role="Order_Detail">
+              <PropertyRef Name="idProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product___idEdit__3B75D760">
+          <End Role="Editorial_" Type="Self.Editorial_" Multiplicity="0..1" />
+          <End Role="Product_" Type="Self.Product_" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Editorial_">
+              <PropertyRef Name="idEditorial" />
+            </Principal>
+            <Dependent Role="Product_">
+              <PropertyRef Name="idEditorial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product_C__idCat__403A8C7D">
+          <End Role="Category_" Type="Self.Category_" Multiplicity="0..1" />
+          <End Role="Product_Category_Detail" Type="Self.Product_Category_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category_">
+              <PropertyRef Name="idCategory" />
+            </Principal>
+            <Dependent Role="Product_Category_Detail">
+              <PropertyRef Name="idCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product_C__idPro__412EB0B6">
+          <End Role="Product_" Type="Self.Product_" Multiplicity="0..1" />
+          <End Role="Product_Category_Detail" Type="Self.Product_Category_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_">
+              <PropertyRef Name="idProduct" />
+            </Principal>
+            <Dependent Role="Product_Category_Detail">
+              <PropertyRef Name="idProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EcommerceECDBModelStoreContainer">
+          <EntitySet Name="Category_" EntityType="Self.Category_" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer_" EntityType="Self.Customer_" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Editorial_" EntityType="Self.Editorial_" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order_" EntityType="Self.Order_" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order_Detail" EntityType="Self.Order_Detail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product_" EntityType="Self.Product_" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product_Category_Detail" EntityType="Self.Product_Category_Detail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_" EntityType="Self.User_" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Order___idCustom__45F365D3" Association="Self.FK__Order___idCustom__45F365D3">
+            <End Role="Customer_" EntitySet="Customer_" />
+            <End Role="Order_" EntitySet="Order_" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order_Det__idOrd__48CFD27E" Association="Self.FK__Order_Det__idOrd__48CFD27E">
+            <End Role="Order_" EntitySet="Order_" />
+            <End Role="Order_Detail" EntitySet="Order_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order_Det__idPro__49C3F6B7" Association="Self.FK__Order_Det__idPro__49C3F6B7">
+            <End Role="Product_" EntitySet="Product_" />
+            <End Role="Order_Detail" EntitySet="Order_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product___idEdit__3B75D760" Association="Self.FK__Product___idEdit__3B75D760">
+            <End Role="Editorial_" EntitySet="Editorial_" />
+            <End Role="Product_" EntitySet="Product_" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product_C__idCat__403A8C7D" Association="Self.FK__Product_C__idCat__403A8C7D">
+            <End Role="Category_" EntitySet="Category_" />
+            <End Role="Product_Category_Detail" EntitySet="Product_Category_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product_C__idPro__412EB0B6" Association="Self.FK__Product_C__idPro__412EB0B6">
+            <End Role="Product_" EntitySet="Product_" />
+            <End Role="Product_Category_Detail" EntitySet="Product_Category_Detail" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EcommerceECDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Category_">
+          <Key>
+            <PropertyRef Name="idCategory" />
+          </Key>
+          <Property Name="idCategory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="categoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="categoryDescripton" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Product_Category_Detail" Relationship="Self.FK__Product_C__idCat__403A8C7D" FromRole="Category_" ToRole="Product_Category_Detail" />
+        </EntityType>
+        <EntityType Name="Customer_">
+          <Key>
+            <PropertyRef Name="idCustomer" />
+          </Key>
+          <Property Name="idCustomer" Type="Int32" Nullable="false" />
+          <Property Name="userName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Order_" Relationship="Self.FK__Order___idCustom__45F365D3" FromRole="Customer_" ToRole="Order_" />
+        </EntityType>
+        <EntityType Name="Editorial_">
+          <Key>
+            <PropertyRef Name="idEditorial" />
+          </Key>
+          <Property Name="idEditorial" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Product_" Relationship="Self.FK__Product___idEdit__3B75D760" FromRole="Editorial_" ToRole="Product_" />
+        </EntityType>
+        <EntityType Name="Order_">
+          <Key>
+            <PropertyRef Name="idOrder" />
+          </Key>
+          <Property Name="idOrder" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCustomer" Type="Int32" />
+          <NavigationProperty Name="Customer_" Relationship="Self.FK__Order___idCustom__45F365D3" FromRole="Order_" ToRole="Customer_" />
+          <NavigationProperty Name="Order_Detail" Relationship="Self.FK__Order_Det__idOrd__48CFD27E" FromRole="Order_" ToRole="Order_Detail" />
+        </EntityType>
+        <EntityType Name="Order_Detail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idOrder" Type="Int32" />
+          <Property Name="idProduct" Type="Int32" />
+          <Property Name="quantity" Type="Int32" />
+          <NavigationProperty Name="Order_" Relationship="Self.FK__Order_Det__idOrd__48CFD27E" FromRole="Order_Detail" ToRole="Order_" />
+          <NavigationProperty Name="Product_" Relationship="Self.FK__Order_Det__idPro__49C3F6B7" FromRole="Order_Detail" ToRole="Product_" />
+        </EntityType>
+        <EntityType Name="Product_">
+          <Key>
+            <PropertyRef Name="idProduct" />
+          </Key>
+          <Property Name="idProduct" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="productName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sku" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="stock" Type="Int32" />
+          <Property Name="productDescription" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="productImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="idEditorial" Type="Int32" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Editorial_" Relationship="Self.FK__Product___idEdit__3B75D760" FromRole="Product_" ToRole="Editorial_" />
+          <NavigationProperty Name="Order_Detail" Relationship="Self.FK__Order_Det__idPro__49C3F6B7" FromRole="Product_" ToRole="Order_Detail" />
+          <NavigationProperty Name="Product_Category_Detail" Relationship="Self.FK__Product_C__idPro__412EB0B6" FromRole="Product_" ToRole="Product_Category_Detail" />
+        </EntityType>
+        <EntityType Name="Product_Category_Detail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCategory" Type="Int32" />
+          <Property Name="idProduct" Type="Int32" />
+          <NavigationProperty Name="Category_" Relationship="Self.FK__Product_C__idCat__403A8C7D" FromRole="Product_Category_Detail" ToRole="Category_" />
+          <NavigationProperty Name="Product_" Relationship="Self.FK__Product_C__idPro__412EB0B6" FromRole="Product_Category_Detail" ToRole="Product_" />
+        </EntityType>
+        <EntityType Name="User_">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="passwordUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK__Product_C__idCat__403A8C7D">
+          <End Role="Category_" Type="Self.Category_" Multiplicity="0..1" />
+          <End Role="Product_Category_Detail" Type="Self.Product_Category_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category_">
+              <PropertyRef Name="idCategory" />
+            </Principal>
+            <Dependent Role="Product_Category_Detail">
+              <PropertyRef Name="idCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order___idCustom__45F365D3">
+          <End Role="Customer_" Type="Self.Customer_" Multiplicity="0..1" />
+          <End Role="Order_" Type="Self.Order_" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer_">
+              <PropertyRef Name="idCustomer" />
+            </Principal>
+            <Dependent Role="Order_">
+              <PropertyRef Name="idCustomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product___idEdit__3B75D760">
+          <End Role="Editorial_" Type="Self.Editorial_" Multiplicity="0..1" />
+          <End Role="Product_" Type="Self.Product_" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Editorial_">
+              <PropertyRef Name="idEditorial" />
+            </Principal>
+            <Dependent Role="Product_">
+              <PropertyRef Name="idEditorial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order_Det__idOrd__48CFD27E">
+          <End Role="Order_" Type="Self.Order_" Multiplicity="0..1" />
+          <End Role="Order_Detail" Type="Self.Order_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order_">
+              <PropertyRef Name="idOrder" />
+            </Principal>
+            <Dependent Role="Order_Detail">
+              <PropertyRef Name="idOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order_Det__idPro__49C3F6B7">
+          <End Role="Product_" Type="Self.Product_" Multiplicity="0..1" />
+          <End Role="Order_Detail" Type="Self.Order_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_">
+              <PropertyRef Name="idProduct" />
+            </Principal>
+            <Dependent Role="Order_Detail">
+              <PropertyRef Name="idProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product_C__idPro__412EB0B6">
+          <End Role="Product_" Type="Self.Product_" Multiplicity="0..1" />
+          <End Role="Product_Category_Detail" Type="Self.Product_Category_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_">
+              <PropertyRef Name="idProduct" />
+            </Principal>
+            <Dependent Role="Product_Category_Detail">
+              <PropertyRef Name="idProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EcommerceECDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Category_" EntityType="Self.Category_" />
+          <EntitySet Name="Customer_" EntityType="Self.Customer_" />
+          <EntitySet Name="Editorial_" EntityType="Self.Editorial_" />
+          <EntitySet Name="Order_" EntityType="Self.Order_" />
+          <EntitySet Name="Order_Detail" EntityType="Self.Order_Detail" />
+          <EntitySet Name="Product_" EntityType="Self.Product_" />
+          <EntitySet Name="Product_Category_Detail" EntityType="Self.Product_Category_Detail" />
+          <EntitySet Name="User_" EntityType="Self.User_" />
+          <AssociationSet Name="FK__Product_C__idCat__403A8C7D" Association="Self.FK__Product_C__idCat__403A8C7D">
+            <End Role="Category_" EntitySet="Category_" />
+            <End Role="Product_Category_Detail" EntitySet="Product_Category_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order___idCustom__45F365D3" Association="Self.FK__Order___idCustom__45F365D3">
+            <End Role="Customer_" EntitySet="Customer_" />
+            <End Role="Order_" EntitySet="Order_" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product___idEdit__3B75D760" Association="Self.FK__Product___idEdit__3B75D760">
+            <End Role="Editorial_" EntitySet="Editorial_" />
+            <End Role="Product_" EntitySet="Product_" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order_Det__idOrd__48CFD27E" Association="Self.FK__Order_Det__idOrd__48CFD27E">
+            <End Role="Order_" EntitySet="Order_" />
+            <End Role="Order_Detail" EntitySet="Order_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order_Det__idPro__49C3F6B7" Association="Self.FK__Order_Det__idPro__49C3F6B7">
+            <End Role="Product_" EntitySet="Product_" />
+            <End Role="Order_Detail" EntitySet="Order_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product_C__idPro__412EB0B6" Association="Self.FK__Product_C__idPro__412EB0B6">
+            <End Role="Product_" EntitySet="Product_" />
+            <End Role="Product_Category_Detail" EntitySet="Product_Category_Detail" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EcommerceECDBModelStoreContainer" CdmEntityContainer="EcommerceECDBEntities">
+          <EntitySetMapping Name="Category_">
+            <EntityTypeMapping TypeName="EcommerceECDBModel.Category_">
+              <MappingFragment StoreEntitySet="Category_">
+                <ScalarProperty Name="idCategory" ColumnName="idCategory" />
+                <ScalarProperty Name="categoryName" ColumnName="categoryName" />
+                <ScalarProperty Name="categoryDescripton" ColumnName="categoryDescripton" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customer_">
+            <EntityTypeMapping TypeName="EcommerceECDBModel.Customer_">
+              <MappingFragment StoreEntitySet="Customer_">
+                <ScalarProperty Name="idCustomer" ColumnName="idCustomer" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Editorial_">
+            <EntityTypeMapping TypeName="EcommerceECDBModel.Editorial_">
+              <MappingFragment StoreEntitySet="Editorial_">
+                <ScalarProperty Name="idEditorial" ColumnName="idEditorial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order_">
+            <EntityTypeMapping TypeName="EcommerceECDBModel.Order_">
+              <MappingFragment StoreEntitySet="Order_">
+                <ScalarProperty Name="idOrder" ColumnName="idOrder" />
+                <ScalarProperty Name="idCustomer" ColumnName="idCustomer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order_Detail">
+            <EntityTypeMapping TypeName="EcommerceECDBModel.Order_Detail">
+              <MappingFragment StoreEntitySet="Order_Detail">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idOrder" ColumnName="idOrder" />
+                <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product_">
+            <EntityTypeMapping TypeName="EcommerceECDBModel.Product_">
+              <MappingFragment StoreEntitySet="Product_">
+                <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+                <ScalarProperty Name="productName" ColumnName="productName" />
+                <ScalarProperty Name="Sku" ColumnName="Sku" />
+                <ScalarProperty Name="stock" ColumnName="stock" />
+                <ScalarProperty Name="productDescription" ColumnName="productDescription" />
+                <ScalarProperty Name="productImage" ColumnName="productImage" />
+                <ScalarProperty Name="idEditorial" ColumnName="idEditorial" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product_Category_Detail">
+            <EntityTypeMapping TypeName="EcommerceECDBModel.Product_Category_Detail">
+              <MappingFragment StoreEntitySet="Product_Category_Detail">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idCategory" ColumnName="idCategory" />
+                <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_">
+            <EntityTypeMapping TypeName="EcommerceECDBModel.User_">
+              <MappingFragment StoreEntitySet="User_">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="passwordUser" ColumnName="passwordUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
