@@ -24,10 +24,11 @@
             @Html.DisplayNameFor(model => model.productDescription)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.productImage)
+            @Html.DisplayNameFor(model => model.price)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.price)
+            @Html.DisplayNameFor(model => model.productImage)
+            
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Editorial_.idEditorial)
@@ -50,10 +51,11 @@
             @Html.DisplayFor(modelItem => item.productDescription)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.productImage)
+            @Html.DisplayFor(modelItem => item.price)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.price)
+            <img src="@item.productImage"  width="100" width="100"/>
+
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Editorial_.idEditorial)

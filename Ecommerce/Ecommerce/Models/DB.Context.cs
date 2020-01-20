@@ -13,10 +13,10 @@ namespace Ecommerce.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EcommerceECDBEntities : DbContext
+    public partial class EcommerceECDBEntities1 : DbContext
     {
-        public EcommerceECDBEntities()
-            : base("name=EcommerceECDBEntities")
+        public EcommerceECDBEntities1()
+            : base("name=EcommerceECDBEntities1")
         {
         }
     

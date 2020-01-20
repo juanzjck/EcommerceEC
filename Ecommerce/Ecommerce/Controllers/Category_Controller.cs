@@ -3,31 +3,32 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Ecommerce.Models;
-
+using System.IO;
 namespace Ecommerce.Controllers
 {
     public class Category_Controller : Controller
     {
-        private EcommerceECDBEntities db = new EcommerceECDBEntities();
+        private EcommerceECDBEntities1 db = new EcommerceECDBEntities1();
 
         // GET: Category_
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View(db.Category_.ToList());
+            return View(await db.Category_.ToListAsync());
         }
 
         // GET: Category_/Details/5
-        public ActionResult Details(int? id)
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category_ category_ = db.Category_.Find(id);
+            Category_ category_ = await db.Category_.FindAsync(id);
             if (category_ == null)
             {
                 return HttpNotFound();
@@ -46,12 +47,12 @@ namespace Ecommerce.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idCategory,categoryName,categoryDescripton")] Category_ category_)
+        public async Task<ActionResult> Create([Bind(Include = "idCategory,categoryName,categoryDescripton")] Category_ category_)
         {
             if (ModelState.IsValid)
             {
                 db.Category_.Add(category_);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
@@ -59,13 +60,13 @@ namespace Ecommerce.Controllers
         }
 
         // GET: Category_/Edit/5
-        public ActionResult Edit(int? id)
+        public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category_ category_ = db.Category_.Find(id);
+            Category_ category_ = await db.Category_.FindAsync(id);
             if (category_ == null)
             {
                 return HttpNotFound();
@@ -78,25 +79,25 @@ namespace Ecommerce.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idCategory,categoryName,categoryDescripton")] Category_ category_)
+        public async Task<ActionResult> Edit([Bind(Include = "idCategory,categoryName,categoryDescripton")] Category_ category_)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(category_).State = EntityState.Modified;
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return View(category_);
         }
 
         // GET: Category_/Delete/5
-        public ActionResult Delete(int? id)
+        public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category_ category_ = db.Category_.Find(id);
+            Category_ category_ = await db.Category_.FindAsync(id);
             if (category_ == null)
             {
                 return HttpNotFound();
@@ -107,11 +108,11 @@ namespace Ecommerce.Controllers
         // POST: Category_/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Category_ category_ = db.Category_.Find(id);
+            Category_ category_ = await db.Category_.FindAsync(id);
             db.Category_.Remove(category_);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 

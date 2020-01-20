@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -12,22 +13,22 @@ namespace Ecommerce.Controllers
 {
     public class Editorial_Controller : Controller
     {
-        private EcommerceECDBEntities db = new EcommerceECDBEntities();
+        private EcommerceECDBEntities1 db = new EcommerceECDBEntities1();
 
         // GET: Editorial_
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View(db.Editorial_.ToList());
+            return View(await db.Editorial_.ToListAsync());
         }
 
         // GET: Editorial_/Details/5
-        public ActionResult Details(int? id)
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Editorial_ editorial_ = db.Editorial_.Find(id);
+            Editorial_ editorial_ = await db.Editorial_.FindAsync(id);
             if (editorial_ == null)
             {
                 return HttpNotFound();
@@ -46,12 +47,12 @@ namespace Ecommerce.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idEditorial")] Editorial_ editorial_)
+        public async Task<ActionResult> Create([Bind(Include = "idEditorial")] Editorial_ editorial_)
         {
             if (ModelState.IsValid)
             {
                 db.Editorial_.Add(editorial_);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
@@ -59,13 +60,13 @@ namespace Ecommerce.Controllers
         }
 
         // GET: Editorial_/Edit/5
-        public ActionResult Edit(int? id)
+        public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Editorial_ editorial_ = db.Editorial_.Find(id);
+            Editorial_ editorial_ = await db.Editorial_.FindAsync(id);
             if (editorial_ == null)
             {
                 return HttpNotFound();
@@ -78,25 +79,25 @@ namespace Ecommerce.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idEditorial")] Editorial_ editorial_)
+        public async Task<ActionResult> Edit([Bind(Include = "idEditorial")] Editorial_ editorial_)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(editorial_).State = EntityState.Modified;
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return View(editorial_);
         }
 
         // GET: Editorial_/Delete/5
-        public ActionResult Delete(int? id)
+        public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Editorial_ editorial_ = db.Editorial_.Find(id);
+            Editorial_ editorial_ = await db.Editorial_.FindAsync(id);
             if (editorial_ == null)
             {
                 return HttpNotFound();
@@ -107,11 +108,11 @@ namespace Ecommerce.Controllers
         // POST: Editorial_/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Editorial_ editorial_ = db.Editorial_.Find(id);
+            Editorial_ editorial_ = await db.Editorial_.FindAsync(id);
             db.Editorial_.Remove(editorial_);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 

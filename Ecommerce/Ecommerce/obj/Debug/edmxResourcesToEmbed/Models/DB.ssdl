@@ -49,9 +49,9 @@
     <Property Name="Sku" Type="varchar" MaxLength="40" />
     <Property Name="stock" Type="int" />
     <Property Name="productDescription" Type="varchar" MaxLength="70" />
-    <Property Name="productImage" Type="image" />
     <Property Name="idEditorial" Type="int" />
     <Property Name="price" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="productImage" Type="varchar" MaxLength="70" />
   </EntityType>
   <EntityType Name="Product_Category_Detail">
     <Key>

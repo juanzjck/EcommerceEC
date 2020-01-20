@@ -129,9 +129,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\Category_Controller.cs" />
-    <Compile Include="Controllers\Customer_Controller.cs" />
     <Compile Include="Controllers\Editorial_Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Order_Controller.cs" />
     <Compile Include="Controllers\Product_Controller.cs" />
     <Compile Include="Controllers\User_Controller.cs" />
     <Compile Include="Global.asax.cs">
@@ -190,8 +190,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Models\DB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DB.Context.cs</LastGenOutput>
       <DependentUpon>DB.edmx</DependentUpon>
+      <LastGenOutput>DB.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\DB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -233,26 +233,26 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\User_\Create.cshtml" />
-    <Content Include="Views\User_\Delete.cshtml" />
-    <Content Include="Views\User_\Details.cshtml" />
-    <Content Include="Views\User_\Edit.cshtml" />
-    <Content Include="Views\User_\Index.cshtml" />
     <Content Include="Views\Product_\Create.cshtml" />
     <Content Include="Views\Product_\Delete.cshtml" />
     <Content Include="Views\Product_\Details.cshtml" />
     <Content Include="Views\Product_\Edit.cshtml" />
     <Content Include="Views\Product_\Index.cshtml" />
+    <Content Include="Views\User_\Create.cshtml" />
+    <Content Include="Views\User_\Delete.cshtml" />
+    <Content Include="Views\User_\Details.cshtml" />
+    <Content Include="Views\User_\Edit.cshtml" />
+    <Content Include="Views\User_\Index.cshtml" />
+    <Content Include="Views\Order_\Create.cshtml" />
+    <Content Include="Views\Order_\Delete.cshtml" />
+    <Content Include="Views\Order_\Details.cshtml" />
+    <Content Include="Views\Order_\Edit.cshtml" />
+    <Content Include="Views\Order_\Index.cshtml" />
     <Content Include="Views\Editorial_\Create.cshtml" />
     <Content Include="Views\Editorial_\Delete.cshtml" />
     <Content Include="Views\Editorial_\Details.cshtml" />
     <Content Include="Views\Editorial_\Edit.cshtml" />
     <Content Include="Views\Editorial_\Index.cshtml" />
-    <Content Include="Views\Customer_\Create.cshtml" />
-    <Content Include="Views\Customer_\Delete.cshtml" />
-    <Content Include="Views\Customer_\Details.cshtml" />
-    <Content Include="Views\Customer_\Edit.cshtml" />
-    <Content Include="Views\Customer_\Index.cshtml" />
     <Content Include="Views\Category_\Create.cshtml" />
     <Content Include="Views\Category_\Delete.cshtml" />
     <Content Include="Views\Category_\Details.cshtml" />
@@ -261,6 +261,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="image\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

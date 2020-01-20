@@ -54,9 +54,9 @@
           <Property Name="Sku" Type="varchar" MaxLength="40" />
           <Property Name="stock" Type="int" />
           <Property Name="productDescription" Type="varchar" MaxLength="70" />
-          <Property Name="productImage" Type="image" />
           <Property Name="idEditorial" Type="int" />
           <Property Name="price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="productImage" Type="varchar" MaxLength="70" />
         </EntityType>
         <EntityType Name="Product_Category_Detail">
           <Key>
@@ -244,9 +244,9 @@
           <Property Name="Sku" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="stock" Type="Int32" />
           <Property Name="productDescription" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
-          <Property Name="productImage" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="idEditorial" Type="Int32" />
           <Property Name="price" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="productImage" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Editorial_" Relationship="Self.FK__Product___idEdit__3B75D760" FromRole="Product_" ToRole="Editorial_" />
           <NavigationProperty Name="Order_Detail" Relationship="Self.FK__Order_Det__idPro__49C3F6B7" FromRole="Product_" ToRole="Order_Detail" />
           <NavigationProperty Name="Product_Category_Detail" Relationship="Self.FK__Product_C__idPro__412EB0B6" FromRole="Product_" ToRole="Product_Category_Detail" />
@@ -344,7 +344,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="EcommerceECDBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="EcommerceECDBEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Category_" EntityType="Self.Category_" />
           <EntitySet Name="Customer_" EntityType="Self.Customer_" />
           <EntitySet Name="Editorial_" EntityType="Self.Editorial_" />
@@ -383,7 +383,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="EcommerceECDBModelStoreContainer" CdmEntityContainer="EcommerceECDBEntities">
+        <EntityContainerMapping StorageEntityContainer="EcommerceECDBModelStoreContainer" CdmEntityContainer="EcommerceECDBEntities1">
           <EntitySetMapping Name="Category_">
             <EntityTypeMapping TypeName="EcommerceECDBModel.Category_">
               <MappingFragment StoreEntitySet="Category_">
@@ -437,9 +437,9 @@
                 <ScalarProperty Name="Sku" ColumnName="Sku" />
                 <ScalarProperty Name="stock" ColumnName="stock" />
                 <ScalarProperty Name="productDescription" ColumnName="productDescription" />
-                <ScalarProperty Name="productImage" ColumnName="productImage" />
                 <ScalarProperty Name="idEditorial" ColumnName="idEditorial" />
                 <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="productImage" ColumnName="productImage" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

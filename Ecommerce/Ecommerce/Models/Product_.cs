@@ -10,6 +10,7 @@
 namespace Ecommerce.Models
 {
     using System;
+    using System.Web;
     using System.Collections.Generic;
     
     public partial class Product_
@@ -26,10 +27,11 @@ namespace Ecommerce.Models
         public string Sku { get; set; }
         public Nullable<int> stock { get; set; }
         public string productDescription { get; set; }
-        public byte[] productImage { get; set; }
         public Nullable<int> idEditorial { get; set; }
         public Nullable<decimal> price { get; set; }
-    
+        public string productImage { get; set; }
+        public HttpPostedFileBase productImageFile { get; set; }
+
         public virtual Editorial_ Editorial_ { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order_Detail> Order_Detail { get; set; }
