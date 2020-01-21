@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Ecommerce.Models.Product_>
+
+
+@foreach (var item in Model)
+{
+    <div class="col mb-4">
+        <div class="card h-100" style="width: 18rem;">
+            <img src="@item.productImage" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">@item.productName</h5>
+                <p class="card-text">@item.productDescription</p>
+                <a href="#" class="btn btn-primary">Agregar</a>
+            </div>
+        </div>
+    </div>
+}
+

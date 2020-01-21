@@ -25,6 +25,7 @@
       <EntityTypeMapping TypeName="EcommerceECDBModel.Editorial_">
         <MappingFragment StoreEntitySet="Editorial_">
           <ScalarProperty Name="idEditorial" ColumnName="idEditorial" />
+          <ScalarProperty Name="EditorialName" ColumnName="EditorialName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

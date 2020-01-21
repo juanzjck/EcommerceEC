@@ -10,9 +10,9 @@
 namespace Ecommerce.Models
 {
     using System;
-    using System.Web;
     using System.Collections.Generic;
-    
+    using System.Web;
+
     public partial class Product_
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -31,7 +31,6 @@ namespace Ecommerce.Models
         public Nullable<decimal> price { get; set; }
         public string productImage { get; set; }
         public HttpPostedFileBase productImageFile { get; set; }
-
         public virtual Editorial_ Editorial_ { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order_Detail> Order_Detail { get; set; }

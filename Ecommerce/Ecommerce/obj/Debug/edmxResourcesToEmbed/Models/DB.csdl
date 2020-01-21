@@ -25,6 +25,7 @@
       <PropertyRef Name="idEditorial" />
     </Key>
     <Property Name="idEditorial" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EditorialName" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Product_" Relationship="Self.FK__Product___idEdit__3B75D760" FromRole="Editorial_" ToRole="Product_" />
   </EntityType>
   <EntityType Name="Order_">

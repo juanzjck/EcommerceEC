@@ -23,6 +23,7 @@
       <PropertyRef Name="idEditorial" />
     </Key>
     <Property Name="idEditorial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EditorialName" Type="varchar" MaxLength="70" />
   </EntityType>
   <EntityType Name="Order_">
     <Key>

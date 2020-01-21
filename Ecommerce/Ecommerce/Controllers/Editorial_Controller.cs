@@ -47,7 +47,7 @@ namespace Ecommerce.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "idEditorial")] Editorial_ editorial_)
+        public async Task<ActionResult> Create([Bind(Include = "idEditorial,EditorialName")] Editorial_ editorial_)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace Ecommerce.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "idEditorial")] Editorial_ editorial_)
+        public async Task<ActionResult> Edit([Bind(Include = "idEditorial,EditorialName")] Editorial_ editorial_)
         {
             if (ModelState.IsValid)
             {

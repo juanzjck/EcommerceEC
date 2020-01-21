@@ -53,7 +53,7 @@ C:\Users\LENOVO\Documents\GitHub\EcommerceEC\Ecommerce\Ecommerce\bin\System.Web.
 C:\Users\LENOVO\Documents\GitHub\EcommerceEC\Ecommerce\Ecommerce\bin\Newtonsoft.Json.xml
 C:\Users\LENOVO\Documents\GitHub\EcommerceEC\Ecommerce\Ecommerce\bin\Antlr3.Runtime.pdb
 C:\Users\LENOVO\Documents\GitHub\EcommerceEC\Ecommerce\Ecommerce\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\LENOVO\Documents\GitHub\EcommerceEC\Ecommerce\Ecommerce\obj\Debug\Ecommerce.csprojAssemblyReference.cache
 C:\Users\LENOVO\Documents\GitHub\EcommerceEC\Ecommerce\Ecommerce\obj\Debug\Ecommerce.csproj.CopyComplete
 C:\Users\LENOVO\Documents\GitHub\EcommerceEC\Ecommerce\Ecommerce\obj\Debug\Ecommerce.dll
 C:\Users\LENOVO\Documents\GitHub\EcommerceEC\Ecommerce\Ecommerce\obj\Debug\Ecommerce.pdb
-C:\Users\LENOVO\Documents\GitHub\EcommerceEC\Ecommerce\Ecommerce\obj\Debug\Ecommerce.csprojAssemblyReference.cache

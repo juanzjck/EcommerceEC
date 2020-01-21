@@ -11,7 +11,8 @@ namespace Ecommerce.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web;
+
     public partial class Editorial_
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,7 +22,10 @@ namespace Ecommerce.Models
         }
     
         public int idEditorial { get; set; }
-    
+        public string EditorialName { get; set; }
+  
+
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product_> Product_ { get; set; }
     }
