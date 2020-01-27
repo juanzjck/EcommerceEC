@@ -20,5 +20,6 @@ namespace Ecommerce.Models
         public string lastName { get; set; }
         public string email { get; set; }
         public string passwordUser { get; set; }
+        public Nullable<int> tipo { get; set; }
     }
 }

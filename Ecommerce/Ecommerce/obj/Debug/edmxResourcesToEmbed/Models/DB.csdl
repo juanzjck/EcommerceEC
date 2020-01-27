@@ -84,6 +84,7 @@
     <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="passwordUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="tipo" Type="Int32" />
   </EntityType>
   <Association Name="FK__Product_C__idCat__403A8C7D">
     <End Role="Category_" Type="Self.Category_" Multiplicity="0..1" />

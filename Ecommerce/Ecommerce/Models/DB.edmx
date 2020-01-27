@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="EcommerceECDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="EcommerceECDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Category_">
           <Key>
             <PropertyRef Name="idCategory" />
@@ -77,6 +77,7 @@
           <Property Name="lastName" Type="varchar" MaxLength="50" />
           <Property Name="email" Type="varchar" MaxLength="50" />
           <Property Name="passwordUser" Type="varchar" MaxLength="50" />
+          <Property Name="tipo" Type="int" />
         </EntityType>
         <Association Name="FK__Order___idCustom__45F365D3">
           <End Role="Customer_" Type="Self.Customer_" Multiplicity="0..1" />
@@ -184,8 +185,7 @@
             <End Role="Product_Category_Detail" EntitySet="Product_Category_Detail" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EcommerceECDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -273,6 +273,7 @@
           <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="passwordUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tipo" Type="Int32" />
         </EntityType>
         <Association Name="FK__Product_C__idCat__403A8C7D">
           <End Role="Category_" Type="Self.Category_" Multiplicity="0..1" />
@@ -458,6 +459,7 @@
           <EntitySetMapping Name="User_">
             <EntityTypeMapping TypeName="EcommerceECDBModel.User_">
               <MappingFragment StoreEntitySet="User_">
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
                 <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
                 <ScalarProperty Name="userName" ColumnName="userName" />
                 <ScalarProperty Name="firstName" ColumnName="firstName" />

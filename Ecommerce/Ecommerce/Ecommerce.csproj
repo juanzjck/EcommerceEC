@@ -128,6 +128,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\Category_Controller.cs" />
     <Compile Include="Controllers\Editorial_Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -138,6 +139,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Category_.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
@@ -185,6 +187,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="css\custom.css" />
+    <Content Include="css\singInLogIn.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -261,6 +264,9 @@
     <Content Include="Views\Editorial_\Details.cshtml" />
     <Content Include="Views\Editorial_\Edit.cshtml" />
     <Content Include="Views\Editorial_\Index.cshtml" />
+    <Content Include="Views\Cart\index.cshtml" />
+    <Content Include="Views\Shared\_layoutLogin.cshtml" />
+    <Content Include="Views\User_\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

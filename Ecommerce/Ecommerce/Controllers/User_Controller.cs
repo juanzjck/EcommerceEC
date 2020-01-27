@@ -124,5 +124,18 @@ namespace Ecommerce.Controllers
             }
             base.Dispose(disposing);
         }
+        [HttpGet]
+        public ActionResult Login() {
+
+
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Login(string email, string password)
+        {
+
+
+            return View();
+        }
     }
 }

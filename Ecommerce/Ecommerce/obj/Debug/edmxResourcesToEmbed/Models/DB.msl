@@ -73,6 +73,7 @@
     <EntitySetMapping Name="User_">
       <EntityTypeMapping TypeName="EcommerceECDBModel.User_">
         <MappingFragment StoreEntitySet="User_">
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
           <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
           <ScalarProperty Name="userName" ColumnName="userName" />
           <ScalarProperty Name="firstName" ColumnName="firstName" />

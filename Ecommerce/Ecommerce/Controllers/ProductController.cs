@@ -9,13 +9,14 @@ using System.IO;
 using System.Web;
 using System.Web.Mvc;
 using Ecommerce.Models;
+using System.Web.Services;
 
 namespace Ecommerce.Controllers
 {
     public class ProductController : Controller
     {
         private EcommerceECDBEntities1 db = new EcommerceECDBEntities1();
-
+      
         // GET: Product
         public async Task<ActionResult> Index()
         {
@@ -24,5 +25,7 @@ namespace Ecommerce.Controllers
         
             return View(products_);
         }
+
+        
     }
 }

@@ -72,6 +72,7 @@
     <Property Name="lastName" Type="varchar" MaxLength="50" />
     <Property Name="email" Type="varchar" MaxLength="50" />
     <Property Name="passwordUser" Type="varchar" MaxLength="50" />
+    <Property Name="tipo" Type="int" />
   </EntityType>
   <Association Name="FK__Order___idCustom__45F365D3">
     <End Role="Customer_" Type="Self.Customer_" Multiplicity="0..1" />
