@@ -4,6 +4,14 @@
   A ecommerce plataform for comics and books
 </p>
 
+<h2>Features</h2>
+<ul>
+   <li>Create product</li>
+  <li>Categories product</li>
+   <li>Categories product by editorial</li>
+   
+</ul>
+
 <h2>Dependecies</h2>
 <ul>
    <li>ASP.NET 4.5 or ></li>
