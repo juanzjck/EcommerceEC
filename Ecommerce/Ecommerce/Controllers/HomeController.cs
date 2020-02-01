@@ -1,16 +1,22 @@
-﻿using System;
+﻿using Ecommerce.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-
+using System.Data.Entity;
 namespace Ecommerce.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        private EcommerceECDBEntities1 db = new EcommerceECDBEntities1();
+        public async Task<ActionResult> Index()
         {
-            return View();
+            var product_ = db.Product_.Include(p => p.Editorial_);
+            var products_ = await product_.ToListAsync();
+
+            return View(products_);
         }
 
         public ActionResult About()

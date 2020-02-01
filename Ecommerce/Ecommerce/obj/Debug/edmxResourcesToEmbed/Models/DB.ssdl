@@ -41,6 +41,15 @@
     <Property Name="idProduct" Type="int" />
     <Property Name="quantity" Type="int" />
   </EntityType>
+  <EntityType Name="Order_preorder">
+    <Key>
+      <PropertyRef Name="idOrder_preorder" />
+    </Key>
+    <Property Name="idOrder_preorder" Type="int" Nullable="false" />
+    <Property Name="idProduct" Type="int" />
+    <Property Name="quantity" Type="int" />
+    <Property Name="idCustomer" Type="int" />
+  </EntityType>
   <EntityType Name="Product_">
     <Key>
       <PropertyRef Name="idProduct" />
@@ -110,6 +119,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__Order_pre__idCus__5DCAEF64">
+    <End Role="Customer_" Type="Self.Customer_" Multiplicity="0..1" />
+    <End Role="Order_preorder" Type="Self.Order_preorder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer_">
+        <PropertyRef Name="idCustomer" />
+      </Principal>
+      <Dependent Role="Order_preorder">
+        <PropertyRef Name="idCustomer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order_pre__idPro__5CD6CB2B">
+    <End Role="Product_" Type="Self.Product_" Multiplicity="0..1" />
+    <End Role="Order_preorder" Type="Self.Order_preorder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product_">
+        <PropertyRef Name="idProduct" />
+      </Principal>
+      <Dependent Role="Order_preorder">
+        <PropertyRef Name="idProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__Product___idEdit__3B75D760">
     <End Role="Editorial_" Type="Self.Editorial_" Multiplicity="0..1" />
     <End Role="Product_" Type="Self.Product_" Multiplicity="*" />
@@ -152,6 +185,7 @@
     <EntitySet Name="Editorial_" EntityType="Self.Editorial_" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Order_" EntityType="Self.Order_" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Order_Detail" EntityType="Self.Order_Detail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Order_preorder" EntityType="Self.Order_preorder" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Product_" EntityType="Self.Product_" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Product_Category_Detail" EntityType="Self.Product_Category_Detail" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User_" EntityType="Self.User_" Schema="dbo" store:Type="Tables" />
@@ -166,6 +200,14 @@
     <AssociationSet Name="FK__Order_Det__idPro__49C3F6B7" Association="Self.FK__Order_Det__idPro__49C3F6B7">
       <End Role="Product_" EntitySet="Product_" />
       <End Role="Order_Detail" EntitySet="Order_Detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order_pre__idCus__5DCAEF64" Association="Self.FK__Order_pre__idCus__5DCAEF64">
+      <End Role="Customer_" EntitySet="Customer_" />
+      <End Role="Order_preorder" EntitySet="Order_preorder" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order_pre__idPro__5CD6CB2B" Association="Self.FK__Order_pre__idPro__5CD6CB2B">
+      <End Role="Product_" EntitySet="Product_" />
+      <End Role="Order_preorder" EntitySet="Order_preorder" />
     </AssociationSet>
     <AssociationSet Name="FK__Product___idEdit__3B75D760" Association="Self.FK__Product___idEdit__3B75D760">
       <End Role="Editorial_" EntitySet="Editorial_" />

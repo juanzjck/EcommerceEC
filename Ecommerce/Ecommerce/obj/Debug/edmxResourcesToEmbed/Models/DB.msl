@@ -83,5 +83,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Order_preorder">
+      <EntityTypeMapping TypeName="EcommerceECDBModel.Order_preorder">
+        <MappingFragment StoreEntitySet="Order_preorder">
+          <ScalarProperty Name="idCustomer" ColumnName="idCustomer" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+          <ScalarProperty Name="idOrder_preorder" ColumnName="idOrder_preorder" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

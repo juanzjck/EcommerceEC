@@ -12,6 +12,7 @@ namespace Ecommerce.Models
     using System;
     using System.Collections.Generic;
     using System.Web;
+
     public partial class Product_
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,6 +20,7 @@ namespace Ecommerce.Models
         {
             this.Order_Detail = new HashSet<Order_Detail>();
             this.Product_Category_Detail = new HashSet<Product_Category_Detail>();
+            this.Order_preorder = new HashSet<Order_preorder>();
         }
     
         public int idProduct { get; set; }
@@ -35,5 +37,7 @@ namespace Ecommerce.Models
         public virtual ICollection<Order_Detail> Order_Detail { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product_Category_Detail> Product_Category_Detail { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order_preorder> Order_preorder { get; set; }
     }
 }

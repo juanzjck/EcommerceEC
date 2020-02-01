@@ -46,6 +46,15 @@
           <Property Name="idProduct" Type="int" />
           <Property Name="quantity" Type="int" />
         </EntityType>
+        <EntityType Name="Order_preorder">
+          <Key>
+            <PropertyRef Name="idOrder_preorder" />
+          </Key>
+          <Property Name="idOrder_preorder" Type="int" Nullable="false" />
+          <Property Name="idProduct" Type="int" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="idCustomer" Type="int" />
+        </EntityType>
         <EntityType Name="Product_">
           <Key>
             <PropertyRef Name="idProduct" />
@@ -115,6 +124,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Order_pre__idCus__5DCAEF64">
+          <End Role="Customer_" Type="Self.Customer_" Multiplicity="0..1" />
+          <End Role="Order_preorder" Type="Self.Order_preorder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer_">
+              <PropertyRef Name="idCustomer" />
+            </Principal>
+            <Dependent Role="Order_preorder">
+              <PropertyRef Name="idCustomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order_pre__idPro__5CD6CB2B">
+          <End Role="Product_" Type="Self.Product_" Multiplicity="0..1" />
+          <End Role="Order_preorder" Type="Self.Order_preorder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_">
+              <PropertyRef Name="idProduct" />
+            </Principal>
+            <Dependent Role="Order_preorder">
+              <PropertyRef Name="idProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Product___idEdit__3B75D760">
           <End Role="Editorial_" Type="Self.Editorial_" Multiplicity="0..1" />
           <End Role="Product_" Type="Self.Product_" Multiplicity="*" />
@@ -157,6 +190,7 @@
           <EntitySet Name="Editorial_" EntityType="Self.Editorial_" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order_" EntityType="Self.Order_" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order_Detail" EntityType="Self.Order_Detail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order_preorder" EntityType="Self.Order_preorder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product_" EntityType="Self.Product_" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product_Category_Detail" EntityType="Self.Product_Category_Detail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User_" EntityType="Self.User_" Schema="dbo" store:Type="Tables" />
@@ -171,6 +205,14 @@
           <AssociationSet Name="FK__Order_Det__idPro__49C3F6B7" Association="Self.FK__Order_Det__idPro__49C3F6B7">
             <End Role="Product_" EntitySet="Product_" />
             <End Role="Order_Detail" EntitySet="Order_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order_pre__idCus__5DCAEF64" Association="Self.FK__Order_pre__idCus__5DCAEF64">
+            <End Role="Customer_" EntitySet="Customer_" />
+            <End Role="Order_preorder" EntitySet="Order_preorder" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order_pre__idPro__5CD6CB2B" Association="Self.FK__Order_pre__idPro__5CD6CB2B">
+            <End Role="Product_" EntitySet="Product_" />
+            <End Role="Order_preorder" EntitySet="Order_preorder" />
           </AssociationSet>
           <AssociationSet Name="FK__Product___idEdit__3B75D760" Association="Self.FK__Product___idEdit__3B75D760">
             <End Role="Editorial_" EntitySet="Editorial_" />
@@ -208,6 +250,7 @@
           <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Order_" Relationship="Self.FK__Order___idCustom__45F365D3" FromRole="Customer_" ToRole="Order_" />
+          <NavigationProperty Name="Order_preorder" Relationship="EcommerceECDBModel.FK__Order_pre__idCus__5DCAEF64" FromRole="Customer_" ToRole="Order_preorder" />
         </EntityType>
         <EntityType Name="Editorial_">
           <Key>
@@ -252,6 +295,7 @@
           <NavigationProperty Name="Editorial_" Relationship="Self.FK__Product___idEdit__3B75D760" FromRole="Product_" ToRole="Editorial_" />
           <NavigationProperty Name="Order_Detail" Relationship="Self.FK__Order_Det__idPro__49C3F6B7" FromRole="Product_" ToRole="Order_Detail" />
           <NavigationProperty Name="Product_Category_Detail" Relationship="Self.FK__Product_C__idPro__412EB0B6" FromRole="Product_" ToRole="Product_Category_Detail" />
+          <NavigationProperty Name="Order_preorder" Relationship="EcommerceECDBModel.FK__Order_pre__idPro__5CD6CB2B" FromRole="Product_" ToRole="Order_preorder" />
         </EntityType>
         <EntityType Name="Product_Category_Detail">
           <Key>
@@ -380,7 +424,51 @@
             <End Role="Product_" EntitySet="Product_" />
             <End Role="Product_Category_Detail" EntitySet="Product_Category_Detail" />
           </AssociationSet>
+          <EntitySet Name="Order_preorder" EntityType="EcommerceECDBModel.Order_preorder" />
+          <AssociationSet Name="FK__Order_pre__idPro__5CD6CB2B" Association="EcommerceECDBModel.FK__Order_pre__idPro__5CD6CB2B">
+            <End Role="Product_" EntitySet="Product_" />
+            <End Role="Order_preorder" EntitySet="Order_preorder" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order_pre__idCus__5DCAEF64" Association="EcommerceECDBModel.FK__Order_pre__idCus__5DCAEF64">
+            <End Role="Customer_" EntitySet="Customer_" />
+            <End Role="Order_preorder" EntitySet="Order_preorder" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Order_preorder">
+          <Key>
+            <PropertyRef Name="idOrder_preorder" />
+          </Key>
+          <Property Name="idOrder_preorder" Type="Int32" Nullable="false" />
+          <Property Name="idProduct" Type="Int32" />
+          <Property Name="quantity" Type="Int32" />
+          <NavigationProperty Name="Product_" Relationship="EcommerceECDBModel.FK__Order_pre__idPro__5CD6CB2B" FromRole="Order_preorder" ToRole="Product_" />
+          <Property Name="idCustomer" Type="Int32" />
+          <NavigationProperty Name="Customer_" Relationship="EcommerceECDBModel.FK__Order_pre__idCus__5DCAEF64" FromRole="Order_preorder" ToRole="Customer_" />
+        </EntityType>
+        <Association Name="FK__Order_pre__idPro__5CD6CB2B">
+          <End Type="EcommerceECDBModel.Product_" Role="Product_" Multiplicity="0..1" />
+          <End Type="EcommerceECDBModel.Order_preorder" Role="Order_preorder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_">
+              <PropertyRef Name="idProduct" />
+            </Principal>
+            <Dependent Role="Order_preorder">
+              <PropertyRef Name="idProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order_pre__idCus__5DCAEF64">
+          <End Type="EcommerceECDBModel.Customer_" Role="Customer_" Multiplicity="0..1" />
+          <End Type="EcommerceECDBModel.Order_preorder" Role="Order_preorder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer_">
+              <PropertyRef Name="idCustomer" />
+            </Principal>
+            <Dependent Role="Order_preorder">
+              <PropertyRef Name="idCustomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -466,6 +554,16 @@
                 <ScalarProperty Name="lastName" ColumnName="lastName" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="passwordUser" ColumnName="passwordUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order_preorder">
+            <EntityTypeMapping TypeName="EcommerceECDBModel.Order_preorder">
+              <MappingFragment StoreEntitySet="Order_preorder">
+                <ScalarProperty Name="idCustomer" ColumnName="idCustomer" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+                <ScalarProperty Name="idOrder_preorder" ColumnName="idOrder_preorder" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

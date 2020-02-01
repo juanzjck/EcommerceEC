@@ -18,22 +18,40 @@ namespace Ecommerce.Controllers
         // GET: User_
         public async Task<ActionResult> Index()
         {
-            return View(await db.User_.ToListAsync());
+            if (Session["autho"] != null)
+            {
+                if (Session["autho"].Equals("true"))
+                {
+                    return View(await db.User_.ToListAsync());
+                }
+            }
+
+                    return RedirectToAction("Index", "Home");
+                            
         }
 
         // GET: User_/Details/5
         public async Task<ActionResult> Details(int? id)
         {
-            if (id == null)
+            if (Session["autho"] != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            User_ user_ = await db.User_.FindAsync(id);
-            if (user_ == null)
+                if (Session["autho"].Equals("true"))
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                User_ user_ = await db.User_.FindAsync(id);
+                if (user_ == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(user_);
             }
-            return View(user_);
+
+            }
+            return RedirectToAction("Index", "Home");
+           
         }
 
         // GET: User_/Create
@@ -62,16 +80,24 @@ namespace Ecommerce.Controllers
         // GET: User_/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (Session["autho"] != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            User_ user_ = await db.User_.FindAsync(id);
-            if (user_ == null)
+                if (Session["autho"].Equals("true"))
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                User_ user_ = await db.User_.FindAsync(id);
+                if (user_ == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(user_);
             }
-            return View(user_);
+            }
+            return RedirectToAction("Index", "Home");
+          
         }
 
         // POST: User_/Edit/5
@@ -81,28 +107,46 @@ namespace Ecommerce.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "idUsuario,userName,firstName,lastName,email,passwordUser")] User_ user_)
         {
-            if (ModelState.IsValid)
+            if (Session["autho"] != null)
             {
-                db.Entry(user_).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                if (Session["autho"].Equals("true"))
+                {
+                    if (ModelState.IsValid)
+                    {
+                        db.Entry(user_).State = EntityState.Modified;
+                        await db.SaveChangesAsync();
+                        return RedirectToAction("Index");
+                    }
+                    return View(user_);
+                }
+
             }
-            return View(user_);
+                return RedirectToAction("Index", "Home");
+           
         }
 
         // GET: User_/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
-            if (id == null)
+            if (Session["autho"] != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (Session["autho"].Equals("true"))
+                {
+                    if (id == null)
+                    {
+                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    }
+                    User_ user_ = await db.User_.FindAsync(id);
+                    if (user_ == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    return View(user_);
+                }
             }
-            User_ user_ = await db.User_.FindAsync(id);
-            if (user_ == null)
-            {
-                return HttpNotFound();
-            }
-            return View(user_);
+            
+                return RedirectToAction("Index", "Home");
+            
         }
 
         // POST: User_/Delete/5
@@ -110,32 +154,67 @@ namespace Ecommerce.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            User_ user_ = await db.User_.FindAsync(id);
-            db.User_.Remove(user_);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            if (Session["autho"] != null)
+            {
+                if (Session["autho"].Equals("true"))
+                {
+                    User_ user_ = await db.User_.FindAsync(id);
+                    db.User_.Remove(user_);
+                    await db.SaveChangesAsync();
+                    return RedirectToAction("Index");
+                }
+              
+            }
+           
+                return RedirectToAction("Index", "Home");
+            
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
-            {
-                db.Dispose();
-            }
+            if (Session["autho"] != null) { 
+            
+            if (Session["autho"].Equals("true")) {
+                if (disposing)
+                {
+                    db.Dispose();
+                }
+    
+          
             base.Dispose(disposing);
+                }
+            }
         }
         [HttpGet]
         public ActionResult Login() {
 
 
-            return View();
+            String mensaje = "";
+            return View((object)mensaje);
         }
         [HttpPost]
-        public ActionResult Login(string email, string password)
+        public async Task<ActionResult> Login(string email, string password)
         {
+
+            foreach(User_ u in await db.User_.ToListAsync()) {
+                if (email ==u.email && password == u.passwordUser)
+                {
+                    Session["user"] = u;
+                    Session["autho"] = "true";
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    String mensaje = "Credenciales invalidas";
+                    return View((object) mensaje);
+                }
+            }
 
 
             return View();
+
+
+
         }
     }
 }

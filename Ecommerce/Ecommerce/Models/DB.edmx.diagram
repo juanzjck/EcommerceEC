@@ -19,6 +19,9 @@
         <AssociationConnector Association="EcommerceECDBModel.FK__Order_Det__idOrd__48CFD27E" ManuallyRouted="false" />
         <AssociationConnector Association="EcommerceECDBModel.FK__Order_Det__idPro__49C3F6B7" ManuallyRouted="false" />
         <AssociationConnector Association="EcommerceECDBModel.FK__Product_C__idPro__412EB0B6" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="EcommerceECDBModel.Order_preorder" Width="1.5" PointX="5.875" PointY="10.875" />
+        <AssociationConnector Association="EcommerceECDBModel.FK__Order_pre__idPro__5CD6CB2B" />
+        <AssociationConnector Association="EcommerceECDBModel.FK__Order_pre__idCus__5DCAEF64" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

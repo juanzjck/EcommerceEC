@@ -1,19 +1,26 @@
 ﻿using Ecommerce.Models;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Ecommerce.Controllers
 {
     public class CartController : Controller
     {
-        List<Product_> products_OnCart = new List<Product_>();
+        List<Order_preorder> products_OnCart = new List<Order_preorder>();
         private EcommerceECDBEntities1 db = new EcommerceECDBEntities1();
         // GET: Cart
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
 
-            return View((List<Product_>)Session["ProductsOnCart"]);
+            var order_preorder = db.Order_preorder.Include(o => o.Product_).Include(o => o.Customer_);
+           List<Order_preorder> preorders =await order_preorder.ToListAsync();
+            foreach (Order_preorder o in preorders) { 
+            
+            }
+            return View();
         }
         //AJAX WEB METHOD FOR ADD PRODUCTO TO CART
         [HttpPost]
@@ -29,15 +36,29 @@ namespace Ecommerce.Controllers
                 if (p.idProduct == Product)
                 {
 
-                    products_OnCart = (List<Product_>)Session["ProductsOnCart"];
+                    products_OnCart = (List<Order_preorder>) Session["ProductsOnCart"];
                     if (products_OnCart == null)
                     {
-                        products_OnCart = new List<Product_>();
+                        products_OnCart = new List<Order_preorder>();
                     }
-
-                    products_OnCart.Add(p);
+                    Order_preorder preorder = new Order_preorder() ;
+                    preorder.idProduct = p.idProduct;
+                    preorder.idCustomer = 1;
+                    products_OnCart.Add(preorder);
                     Session["ProductsOnCart"] = products_OnCart;
+                    
+                    if ((List<int>)Session["cuantity"] == null)
+                    {
+                        List<int> cuantity = new List<int>();
+                        cuantity.Add(1);
+                        Session["cuantity"] = cuantity;
 
+                    }
+                    else {
+                        List<int> cuantyty = (List<int>) Session["cuantity"];
+                        cuantyty.Add(1);
+                    }
+                   
 
                 }
             }
@@ -49,11 +70,11 @@ namespace Ecommerce.Controllers
         public ActionResult removeFromCart(int Product)
         {
             string message = "";
-            products_OnCart = (List<Product_>)Session["ProductsOnCart"];
-            Product_ productselected = null;
+            products_OnCart = (List<Order_preorder>)Session["ProductsOnCart"];
+            Order_preorder productselected = null;
             if (products_OnCart != null)
             {
-                foreach (Product_ p in products_OnCart)
+                foreach (Order_preorder p in products_OnCart)
                 {
                     if (p.idProduct == Product)
                     {

@@ -133,6 +133,7 @@
     <Compile Include="Controllers\Editorial_Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Order_Controller.cs" />
+    <Compile Include="Controllers\Order_preorderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\Product_Controller.cs" />
     <Compile Include="Controllers\User_Controller.cs" />
@@ -168,6 +169,9 @@
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Order_Detail.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order_preorder.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Product_.cs">
@@ -267,10 +271,17 @@
     <Content Include="Views\Cart\index.cshtml" />
     <Content Include="Views\Shared\_layoutLogin.cshtml" />
     <Content Include="Views\User_\Login.cshtml" />
+    <Content Include="Views\Home\_productGrip.cshtml" />
+    <Content Include="Views\Order_preorder\Create.cshtml" />
+    <Content Include="Views\Order_preorder\Delete.cshtml" />
+    <Content Include="Views\Order_preorder\Details.cshtml" />
+    <Content Include="Views\Order_preorder\Edit.cshtml" />
+    <Content Include="Views\Order_preorder\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="image\" />
+    <Folder Include="Views\Preorder\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

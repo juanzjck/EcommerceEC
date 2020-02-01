@@ -18,6 +18,7 @@ namespace Ecommerce.Models
         public Customer_()
         {
             this.Order_ = new HashSet<Order_>();
+            this.Order_preorder = new HashSet<Order_preorder>();
         }
     
         public int idCustomer { get; set; }
@@ -28,5 +29,7 @@ namespace Ecommerce.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order_> Order_ { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order_preorder> Order_preorder { get; set; }
     }
 }

@@ -33,5 +33,6 @@ namespace Ecommerce.Models
         public virtual DbSet<Product_> Product_ { get; set; }
         public virtual DbSet<Product_Category_Detail> Product_Category_Detail { get; set; }
         public virtual DbSet<User_> User_ { get; set; }
+        public virtual DbSet<Order_preorder> Order_preorder { get; set; }
     }
 }
