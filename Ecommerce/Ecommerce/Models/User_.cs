@@ -14,6 +14,12 @@ namespace Ecommerce.Models
     
     public partial class User_
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public User_()
+        {
+            this.Customer_ = new HashSet<Customer_>();
+        }
+    
         public int idUsuario { get; set; }
         public string userName { get; set; }
         public string firstName { get; set; }
@@ -21,5 +27,10 @@ namespace Ecommerce.Models
         public string email { get; set; }
         public string passwordUser { get; set; }
         public Nullable<int> tipo { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Customer_> Customer_ { get; set; }
+        public virtual User_ User_1 { get; set; }
+        public virtual User_ User_2 { get; set; }
     }
 }

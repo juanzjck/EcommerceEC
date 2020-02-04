@@ -13,11 +13,10 @@
     <EntitySetMapping Name="Customer_">
       <EntityTypeMapping TypeName="IsTypeOf(EcommerceECDBModel.Customer_)">
         <MappingFragment StoreEntitySet="Customer_">
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Dirrecion" ColumnName="Dirrecion" />
           <ScalarProperty Name="idCustomer" ColumnName="idCustomer" />
-          <ScalarProperty Name="userName" ColumnName="userName" />
-          <ScalarProperty Name="firstName" ColumnName="firstName" />
-          <ScalarProperty Name="lastName" ColumnName="lastName" />
-          <ScalarProperty Name="email" ColumnName="email" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

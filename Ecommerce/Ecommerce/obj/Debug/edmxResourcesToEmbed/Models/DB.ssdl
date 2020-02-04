@@ -13,10 +13,9 @@
       <PropertyRef Name="idCustomer" />
     </Key>
     <Property Name="idCustomer" Type="int" Nullable="false" />
-    <Property Name="userName" Type="varchar" MaxLength="40" />
-    <Property Name="firstName" Type="varchar" MaxLength="50" />
-    <Property Name="lastName" Type="varchar" MaxLength="50" />
-    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="Dirrecion" Type="nvarchar" MaxLength="50" />
+    <Property Name="Telefono" Type="varbinary" MaxLength="50" />
+    <Property Name="idUser" Type="int" />
   </EntityType>
   <EntityType Name="Editorial_">
     <Key>
@@ -167,6 +166,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Customer__User_">
+    <End Role="User_" Type="Self.User_" Multiplicity="0..1" />
+    <End Role="Customer_" Type="Self.Customer_" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="Customer_">
+        <PropertyRef Name="idUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User__User_">
+    <End Role="User_" Type="Self.User_" Multiplicity="1" />
+    <End Role="User_1" Type="Self.User_" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User_">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="User_1">
+        <PropertyRef Name="idUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="EcommerceECDBModelStoreContainer">
     <EntitySet Name="Category_" EntityType="Self.Category_" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Customer_" EntityType="Self.Customer_" Schema="dbo" store:Type="Tables" />
@@ -204,6 +227,14 @@
     <AssociationSet Name="FK__Product_C__idPro__412EB0B6" Association="Self.FK__Product_C__idPro__412EB0B6">
       <End Role="Product_" EntitySet="Product_" />
       <End Role="Product_Category_Detail" EntitySet="Product_Category_Detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customer__User_" Association="Self.FK_Customer__User_">
+      <End Role="User_" EntitySet="User_" />
+      <End Role="Customer_" EntitySet="Customer_" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User__User_" Association="Self.FK_User__User_">
+      <End Role="User_" EntitySet="User_" />
+      <End Role="User_1" EntitySet="User_" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

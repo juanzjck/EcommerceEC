@@ -17,9 +17,10 @@
 <div class="container mb-4">
     <div class="row">
         <div class="col-12">
-            <div class="table-responsive">
-                @if (Model != null)
-                {
+            @if (Model != null)
+            {
+                <div class="table-responsive">
+
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -34,46 +35,59 @@
                             </tr>
                         </thead>
                         <tbody>
-
+                            @{decimal grantotal = 0;}
                             @foreach (var item in Model)
                             {
-                            <tr>
-                                <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-                                <td>@item.Product_.productName</td>
-                                <td>In stock</td>
-                                <td class="text-right">$@item.Product_.price </td>
-                                <td><input class="form-control" type="text" value="@item.quantity" /></td>
-                                @{var total = item.Product_.price * item.quantity;}
-                                <td class="text-right">@total</td>
-                                <td class="text-right"><button class="btn btn-sm btn-danger" onclick="remove(@item.idProduct)">X</button> </td>
-                            </tr>
+                                <tr>
+                                    <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
+                                    <td>@item.Product_.productName</td>
+                                    <td>In stock</td>
+                                    <td class="text-right">$@item.Product_.price </td>
+                                    <td><input class="form-control" type="text" value="@item.quantity" /></td>
+                                    @{var total = item.Product_.price * item.quantity;
+                                        grantotal = (decimal)(total + grantotal);}
+                                    <td class="text-right">@total</td>
+                                    <td class="text-right"><button class="btn btn-sm btn-danger" onclick="remove(@item.idProduct)">X</button> </td>
+                                </tr>
                             }
 
-
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><h3>$@grantotal</h3></td>
+                                <td></td>
+                            </tr>
 
 
                         </tbody>
                     </table>
-                }
-                else
-                {
 
-                    <h3>El carrito no tiene procutos, elije alguno de nustros productos</h3>
-                       }
-            </div>
-        </div>
-        <div class="col mb-2">
-            <div class="row">
-                <div class="col-sm-12  col-md-6">
-                    <button class="btn btn-block btn-light">Continuar comprando</button>
+
+
                 </div>
-                <div class="col-sm-12 col-md-6 text-right">
-                    <button class="btn btn-lg btn-block btn-success text-uppercase">Pagar</button>
+                <div class="col mb-2">
+                    <div class="row">
+                        <div class="col-sm-12  col-md-6">
+                            <button class="btn btn-block btn-light">Continuar comprando</button>
+                        </div>
+                        <div class="col-sm-12 col-md-6 text-right">
+                  @Html.ActionLink("Pagar", "pay", "Cart" ,null, new {@class="btn btn-lg btn-block btn-success text-uppercase"})
+                        </div>
+                    </div>
                 </div>
-            </div>
+            }
+            else
+            {
+
+                <h3>El carrito no tiene produtos, elije alguno de nustros productos</h3>
+            }
+
         </div>
-    </div>
 </div>
+    </div>
 
 <script type="text/javascript">
 

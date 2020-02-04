@@ -21,6 +21,8 @@
         <AssociationConnector Association="EcommerceECDBModel.FK__Product_C__idPro__412EB0B6" ManuallyRouted="false" />
         <EntityTypeShape EntityType="EcommerceECDBModel.Order_preorder" Width="1.5" PointX="5.875" PointY="10.875" IsExpanded="true" />
         <AssociationConnector Association="EcommerceECDBModel.FK__Order_pre__idPro__5CD6CB2B" />
+        <AssociationConnector Association="EcommerceECDBModel.FK_Customer__User_" />
+        <AssociationConnector Association="EcommerceECDBModel.FK_User__User_" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

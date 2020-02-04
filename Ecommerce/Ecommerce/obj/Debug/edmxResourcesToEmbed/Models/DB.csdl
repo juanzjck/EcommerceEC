@@ -14,11 +14,11 @@
       <PropertyRef Name="idCustomer" />
     </Key>
     <Property Name="idCustomer" Type="Int32" Nullable="false" />
-    <Property Name="userName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-    <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Order_" Relationship="Self.FK__Order___idCustom__45F365D3" FromRole="Customer_" ToRole="Order_" />
+    <Property Name="Dirrecion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Telefono" Type="Binary" MaxLength="50" FixedLength="false" />
+    <Property Name="idUser" Type="Int32" />
+    <NavigationProperty Name="User_" Relationship="EcommerceECDBModel.FK_Customer__User_" FromRole="Customer_" ToRole="User_" />
   </EntityType>
   <EntityType Name="Editorial_">
     <Key>
@@ -86,6 +86,9 @@
     <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="passwordUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="tipo" Type="Int32" />
+    <NavigationProperty Name="Customer_" Relationship="EcommerceECDBModel.FK_Customer__User_" FromRole="User_" ToRole="Customer_" />
+    <NavigationProperty Name="User_1" Relationship="EcommerceECDBModel.FK_User__User_" FromRole="User_" ToRole="User_1" />
+    <NavigationProperty Name="User_2" Relationship="EcommerceECDBModel.FK_User__User_" FromRole="User_1" ToRole="User_" />
   </EntityType>
   <Association Name="FK__Product_C__idCat__403A8C7D">
     <End Role="Category_" Type="Self.Category_" Multiplicity="0..1" />
@@ -197,6 +200,14 @@
       <End Role="Product_" EntitySet="Product_" />
       <End Role="Order_preorder" EntitySet="Order_preorder" />
     </AssociationSet>
+    <AssociationSet Name="FK_Customer__User_" Association="EcommerceECDBModel.FK_Customer__User_">
+      <End Role="User_" EntitySet="User_" />
+      <End Role="Customer_" EntitySet="Customer_" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User__User_" Association="EcommerceECDBModel.FK_User__User_">
+      <End Role="User_" EntitySet="User_" />
+      <End Role="User_1" EntitySet="User_" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Order_preorder">
     <Key>
@@ -216,6 +227,30 @@
       </Principal>
       <Dependent Role="Order_preorder">
         <PropertyRef Name="idProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customer__User_">
+    <End Type="EcommerceECDBModel.User_" Role="User_" Multiplicity="0..1" />
+    <End Type="EcommerceECDBModel.Customer_" Role="Customer_" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="Customer_">
+        <PropertyRef Name="idUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User__User_">
+    <End Type="EcommerceECDBModel.User_" Role="User_" Multiplicity="1" />
+    <End Type="EcommerceECDBModel.User_" Role="User_1" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User_">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="User_1">
+        <PropertyRef Name="idUsuario" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

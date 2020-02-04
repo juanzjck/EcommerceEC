@@ -15,8 +15,8 @@ namespace Ecommerce.Controllers
         public async Task<ActionResult> Index()
         {
 
-           
-            return View( (List<Order_preorder>)Session["ProductsOnCart"]);
+
+            return View((List<Order_preorder>)Session["ProductsOnCart"]);
 
         }
         //AJAX WEB METHOD FOR ADD PRODUCTO TO CART
@@ -33,22 +33,22 @@ namespace Ecommerce.Controllers
                 if (p.idProduct == Product)
                 {
 
-                    products_OnCart = (List<Order_preorder>) Session["ProductsOnCart"];
-                    
+                    products_OnCart = (List<Order_preorder>)Session["ProductsOnCart"];
+
                     if (products_OnCart == null)
                     {
                         products_OnCart = new List<Order_preorder>();
                     }
-                    Order_preorder preorder = new Order_preorder() ;
+                    Order_preorder preorder = new Order_preorder();
                     preorder.idProduct = p.idProduct;
                     preorder.quantity = 1;
-                 
+
                     preorder.Product_ = p;
                     products_OnCart.Add(preorder);
                     Session["ProductsOnCart"] = products_OnCart;
-                    
-                    
-                   
+
+
+
 
                 }
             }
@@ -88,6 +88,32 @@ namespace Ecommerce.Controllers
             return Json(new { Message = message, JsonRequestBehavior.AllowGet });
 
 
+        }
+
+        [HttpGet]
+
+        public ActionResult pay() {
+
+            if (Session["autho"] != null)
+            {
+
+                if (Session["autho"].Equals("true"))
+                {
+                    return View();
+                }
+                else {
+                    return RedirectToAction("login", "User_");
+                }
+            }
+            else {
+
+                return RedirectToAction("login", "User_");
+            }
+                  
+          
+         
+         
+           
         }
 
 

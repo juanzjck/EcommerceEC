@@ -21,13 +21,12 @@ namespace Ecommerce.Models
         }
     
         public int idCustomer { get; set; }
-        public string userName { get; set; }
-        public string firstName { get; set; }
-        public string lastName { get; set; }
-        public string email { get; set; }
-     
-
+        public string Dirrecion { get; set; }
+        public byte[] Telefono { get; set; }
+        public Nullable<int> idUser { get; set; }
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order_> Order_ { get; set; }
+        public virtual User_ User_ { get; set; }
     }
 }
