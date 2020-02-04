@@ -22,7 +22,20 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            @using (Html.BeginForm("search", "Home", FormMethod.Get))
+            {
+            <div class="card-body">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="search" placeholder="Buscar...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-secondary" type="submit">Buscar!</button>
+                    </span>
+                </div>
+            </div>
+            }
+
             <div class="collapse navbar-collapse" id="navbarResponsive">
+
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
                         @Html.ActionLink("Home", "Index", "Home", new { @class = "nav-link" })

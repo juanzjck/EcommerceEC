@@ -17,9 +17,7 @@ namespace Ecommerce.Models
         public int idOrder_preorder { get; set; }
         public Nullable<int> idProduct { get; set; }
         public Nullable<int> quantity { get; set; }
-        public Nullable<int> idCustomer { get; set; }
     
         public virtual Product_ Product_ { get; set; }
-        public virtual Customer_ Customer_ { get; set; }
     }
 }

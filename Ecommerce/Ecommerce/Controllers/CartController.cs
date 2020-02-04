@@ -15,12 +15,9 @@ namespace Ecommerce.Controllers
         public async Task<ActionResult> Index()
         {
 
-            var order_preorder = db.Order_preorder.Include(o => o.Product_).Include(o => o.Customer_);
-           List<Order_preorder> preorders =await order_preorder.ToListAsync();
-            foreach (Order_preorder o in preorders) { 
-            
-            }
-            return View();
+           
+            return View( (List<Order_preorder>)Session["ProductsOnCart"]);
+
         }
         //AJAX WEB METHOD FOR ADD PRODUCTO TO CART
         [HttpPost]
@@ -37,27 +34,20 @@ namespace Ecommerce.Controllers
                 {
 
                     products_OnCart = (List<Order_preorder>) Session["ProductsOnCart"];
+                    
                     if (products_OnCart == null)
                     {
                         products_OnCart = new List<Order_preorder>();
                     }
                     Order_preorder preorder = new Order_preorder() ;
                     preorder.idProduct = p.idProduct;
-                    preorder.idCustomer = 1;
+                    preorder.quantity = 1;
+                 
+                    preorder.Product_ = p;
                     products_OnCart.Add(preorder);
                     Session["ProductsOnCart"] = products_OnCart;
                     
-                    if ((List<int>)Session["cuantity"] == null)
-                    {
-                        List<int> cuantity = new List<int>();
-                        cuantity.Add(1);
-                        Session["cuantity"] = cuantity;
-
-                    }
-                    else {
-                        List<int> cuantyty = (List<int>) Session["cuantity"];
-                        cuantyty.Add(1);
-                    }
+                    
                    
 
                 }

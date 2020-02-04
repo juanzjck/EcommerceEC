@@ -133,7 +133,6 @@
     <Compile Include="Controllers\Editorial_Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Order_Controller.cs" />
-    <Compile Include="Controllers\Order_preorderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\Product_Controller.cs" />
     <Compile Include="Controllers\User_Controller.cs" />
@@ -201,6 +200,7 @@
       <DependentUpon>DB.edmx</DependentUpon>
       <LastGenOutput>DB.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="Models\DB.edmx.sql" />
     <Content Include="Models\DB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DB.edmx</DependentUpon>
@@ -212,6 +212,7 @@
     <EntityDeploy Include="Models\DB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DB.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>EcommerceECDBEntities1</CustomToolNamespace>
     </EntityDeploy>
     <Content Include="Models\DB.edmx.diagram">
       <DependentUpon>DB.edmx</DependentUpon>
@@ -277,6 +278,7 @@
     <Content Include="Views\Order_preorder\Details.cshtml" />
     <Content Include="Views\Order_preorder\Edit.cshtml" />
     <Content Include="Views\Order_preorder\Index.cshtml" />
+    <Content Include="Views\Home\search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

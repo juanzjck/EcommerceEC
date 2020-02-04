@@ -2,7 +2,7 @@
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="EcommerceECDBModelStoreContainer" CdmEntityContainer="EcommerceECDBEntities1">
     <EntitySetMapping Name="Category_">
-      <EntityTypeMapping TypeName="EcommerceECDBModel.Category_">
+      <EntityTypeMapping TypeName="IsTypeOf(EcommerceECDBModel.Category_)">
         <MappingFragment StoreEntitySet="Category_">
           <ScalarProperty Name="idCategory" ColumnName="idCategory" />
           <ScalarProperty Name="categoryName" ColumnName="categoryName" />
@@ -11,7 +11,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Customer_">
-      <EntityTypeMapping TypeName="EcommerceECDBModel.Customer_">
+      <EntityTypeMapping TypeName="IsTypeOf(EcommerceECDBModel.Customer_)">
         <MappingFragment StoreEntitySet="Customer_">
           <ScalarProperty Name="idCustomer" ColumnName="idCustomer" />
           <ScalarProperty Name="userName" ColumnName="userName" />
@@ -22,7 +22,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Editorial_">
-      <EntityTypeMapping TypeName="EcommerceECDBModel.Editorial_">
+      <EntityTypeMapping TypeName="IsTypeOf(EcommerceECDBModel.Editorial_)">
         <MappingFragment StoreEntitySet="Editorial_">
           <ScalarProperty Name="idEditorial" ColumnName="idEditorial" />
           <ScalarProperty Name="EditorialName" ColumnName="EditorialName" />
@@ -30,7 +30,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Order_">
-      <EntityTypeMapping TypeName="EcommerceECDBModel.Order_">
+      <EntityTypeMapping TypeName="IsTypeOf(EcommerceECDBModel.Order_)">
         <MappingFragment StoreEntitySet="Order_">
           <ScalarProperty Name="idOrder" ColumnName="idOrder" />
           <ScalarProperty Name="idCustomer" ColumnName="idCustomer" />
@@ -38,7 +38,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Order_Detail">
-      <EntityTypeMapping TypeName="EcommerceECDBModel.Order_Detail">
+      <EntityTypeMapping TypeName="IsTypeOf(EcommerceECDBModel.Order_Detail)">
         <MappingFragment StoreEntitySet="Order_Detail">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="idOrder" ColumnName="idOrder" />
@@ -48,7 +48,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Product_">
-      <EntityTypeMapping TypeName="EcommerceECDBModel.Product_">
+      <EntityTypeMapping TypeName="IsTypeOf(EcommerceECDBModel.Product_)">
         <MappingFragment StoreEntitySet="Product_">
           <ScalarProperty Name="idProduct" ColumnName="idProduct" />
           <ScalarProperty Name="productName" ColumnName="productName" />
@@ -62,7 +62,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Product_Category_Detail">
-      <EntityTypeMapping TypeName="EcommerceECDBModel.Product_Category_Detail">
+      <EntityTypeMapping TypeName="IsTypeOf(EcommerceECDBModel.Product_Category_Detail)">
         <MappingFragment StoreEntitySet="Product_Category_Detail">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="idCategory" ColumnName="idCategory" />
@@ -71,25 +71,24 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="User_">
-      <EntityTypeMapping TypeName="EcommerceECDBModel.User_">
+      <EntityTypeMapping TypeName="IsTypeOf(EcommerceECDBModel.User_)">
         <MappingFragment StoreEntitySet="User_">
-          <ScalarProperty Name="tipo" ColumnName="tipo" />
           <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
           <ScalarProperty Name="userName" ColumnName="userName" />
           <ScalarProperty Name="firstName" ColumnName="firstName" />
           <ScalarProperty Name="lastName" ColumnName="lastName" />
           <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="passwordUser" ColumnName="passwordUser" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Order_preorder">
-      <EntityTypeMapping TypeName="EcommerceECDBModel.Order_preorder">
+      <EntityTypeMapping TypeName="IsTypeOf(EcommerceECDBModel.Order_preorder)">
         <MappingFragment StoreEntitySet="Order_preorder">
-          <ScalarProperty Name="idCustomer" ColumnName="idCustomer" />
-          <ScalarProperty Name="quantity" ColumnName="quantity" />
-          <ScalarProperty Name="idProduct" ColumnName="idProduct" />
           <ScalarProperty Name="idOrder_preorder" ColumnName="idOrder_preorder" />
+          <ScalarProperty Name="idProduct" ColumnName="idProduct" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

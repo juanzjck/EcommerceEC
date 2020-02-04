@@ -1,3 +1,4 @@
+C:\Users\LENOVO\Documents\GitHub\EcommerceEC\Ecommerce\Ecommerce\obj\Debug\Ecommerce.csprojAssemblyReference.cache
 C:\Users\LENOVO\Documents\GitHub\EcommerceEC\Ecommerce\Ecommerce\bin\Ecommerce.dll.config
 C:\Users\LENOVO\Documents\GitHub\EcommerceEC\Ecommerce\Ecommerce\bin\Ecommerce.dll
 C:\Users\LENOVO\Documents\GitHub\EcommerceEC\Ecommerce\Ecommerce\bin\Ecommerce.pdb

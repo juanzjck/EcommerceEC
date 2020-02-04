@@ -32,5 +32,39 @@ namespace Ecommerce.Controllers
 
             return View();
         }
+      
+        [HttpGet]
+        public async Task<ActionResult> search(string search) {
+            var product_ = db.Product_.Include(p => p.Editorial_);
+            List<Product_> products_ = await product_.ToListAsync();
+            List<Product_> products_filter = new List<Product_>();
+         
+         
+            foreach (Product_ p in products_) {
+                var strings = p.productName.Split(' ');
+              
+                foreach (string a in strings) {
+                    if (search != null)
+                    {
+                        var search_strings = search.Split(' ');
+                        foreach (string s in search_strings)
+                        {
+                            if (s.Equals(a)) {
+                                products_filter.Add(p);
+                            }
+                          
+                        }
+                    }
+                  
+                
+                    
+                  
+                 
+                }
+                
+            }
+
+            return View(products_filter);
+        }
     }
 }

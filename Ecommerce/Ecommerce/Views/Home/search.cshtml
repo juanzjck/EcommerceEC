@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Ecommerce.Models.Product_>
+
+
+@{
+    ViewBag.Title = "search";
+}
+
+    <div class="row">
+        @if ( Model!= null)
+        {
+            foreach (var item in Model)
+            {
+
+
+
+                <div class="col-lg-4 col-sm-6 portfolio-item">
+                    <div class="card h-100">
+                        <a href="#"><img class="card-img-top" src="@item.productImage" alt=""></a>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="#">@item.productName</a>
+                            </h4>
+                            <p class="card-text">@item.productDescription</p>
+                            <input type="submit" class="btn btn-primary" onclick="addToCart(@item.idProduct)" value="Agregar" />
+                        </div>
+                    </div>
+                </div>
+
+            }
+        }
+
+    </div>
