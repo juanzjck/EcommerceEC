@@ -9,6 +9,8 @@
    <li>Create product</li>
   <li>Categories product</li>
    <li>Categories product by editorial</li>
+   <li>Simple search product</li>
+  
    
 </ul>
 
