@@ -10,7 +10,7 @@ namespace Ecommerce.Controllers
 {
     public class HomeController : Controller
     {
-        private EcommerceECDBEntities1 db = new EcommerceECDBEntities1();
+        private EcommerceECDBEntities2 db = new EcommerceECDBEntities2();
         public async Task<ActionResult> Index()
         {
             var product_ = db.Product_.Include(p => p.Editorial_);

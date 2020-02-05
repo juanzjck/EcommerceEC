@@ -19,8 +19,8 @@ namespace Ecommerce.Models
         public Product_()
         {
             this.Order_Detail = new HashSet<Order_Detail>();
-            this.Product_Category_Detail = new HashSet<Product_Category_Detail>();
             this.Order_preorder = new HashSet<Order_preorder>();
+            this.Product_Category_Detail = new HashSet<Product_Category_Detail>();
         }
     
         public int idProduct { get; set; }
@@ -36,8 +36,8 @@ namespace Ecommerce.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order_Detail> Order_Detail { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product_Category_Detail> Product_Category_Detail { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order_preorder> Order_preorder { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Product_Category_Detail> Product_Category_Detail { get; set; }
     }
 }

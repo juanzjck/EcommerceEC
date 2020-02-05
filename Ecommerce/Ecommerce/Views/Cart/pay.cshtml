@@ -1,35 +1,52 @@
-﻿
+﻿@model Ecommerce.Models.Customer_
+
 @{
     ViewBag.Title = "index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-    <div class="container mb-4">
-        <div class="row">
-           
-            <table class="table">
-                <tr>
-                <th>Total</th>
-              
-                <th><h2>$100</h2></th>
-                </tr>
-            </table>
+<div class="container mb-4">
+    <h2>Daots de facturacion</h2>
+    @using (Html.BeginForm("purchase", "Cart", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
 
-            </div>
+<div class="form-horizontal">
+    <h4>Customer_</h4>
+    <hr />
 
-        <div class="row">
 
-            <table class="table">
-
-                <tr>
-                    <th>Dirreción</th>
-                    <th><input type="text" value="" /></th>
-                    <th>Télefono</th>
-                    <th><input type="text" value="" /></th>
-                </tr>
-
-            </table>
-
-            <button class="btn  btn-success">Completar el pago</button>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Dirrecion, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Dirrecion, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Dirrecion, "", new { @class = "text-danger" })
         </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Telefono, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
         </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Cedula, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model =>  model.Cedula, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model =>  model.Cedula, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+    }
+
+</div>

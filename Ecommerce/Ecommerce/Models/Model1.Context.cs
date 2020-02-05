@@ -13,10 +13,10 @@ namespace Ecommerce.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EcommerceECDBEntities1 : DbContext
+    public partial class EcommerceECDBEntities2 : DbContext
     {
-        public EcommerceECDBEntities1()
-            : base("name=EcommerceECDBEntities1")
+        public EcommerceECDBEntities2()
+            : base("name=EcommerceECDBEntities2")
         {
         }
     
@@ -30,9 +30,9 @@ namespace Ecommerce.Models
         public virtual DbSet<Editorial_> Editorial_ { get; set; }
         public virtual DbSet<Order_> Order_ { get; set; }
         public virtual DbSet<Order_Detail> Order_Detail { get; set; }
+        public virtual DbSet<Order_preorder> Order_preorder { get; set; }
         public virtual DbSet<Product_> Product_ { get; set; }
         public virtual DbSet<Product_Category_Detail> Product_Category_Detail { get; set; }
         public virtual DbSet<User_> User_ { get; set; }
-        public virtual DbSet<Order_preorder> Order_preorder { get; set; }
     }
 }

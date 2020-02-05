@@ -5,127 +5,118 @@ using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Net;
-using System.IO;
 using System.Web;
 using System.Web.Mvc;
 using Ecommerce.Models;
 
 namespace Ecommerce.Controllers
 {
-    public class Product_Controller : Controller
+    public class Customer_Controller : Controller
     {
         private EcommerceECDBEntities2 db = new EcommerceECDBEntities2();
 
-        // GET: Product_
+        // GET: Customer_
         public async Task<ActionResult> Index()
         {
-
-            var product_ = db.Product_.Include(p => p.Editorial_);
-            return View(await product_.ToListAsync());
+            var customer_ = db.Customer_.Include(c => c.User_);
+            return View(await customer_.ToListAsync());
         }
 
-        // GET: Product_/Details/5
+        // GET: Customer_/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product_ product_ = await db.Product_.FindAsync(id);
-            if (product_ == null)
+            Customer_ customer_ = await db.Customer_.FindAsync(id);
+            if (customer_ == null)
             {
                 return HttpNotFound();
             }
-            return View(product_);
+            return View(customer_);
         }
 
-        // GET: Product_/Create
+        // GET: Customer_/Create
         public ActionResult Create()
         {
-            ViewBag.idEditorial = new SelectList(db.Editorial_, "idEditorial", "idEditorial");
+            ViewBag.idUser = new SelectList(db.User_, "idUsuario", "userName");
             return View();
         }
 
-        // POST: Product_/Create
+        // POST: Customer_/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create( Product_ product_)
+        public async Task<ActionResult> Create([Bind(Include = "idCustomer,Dirrecion,Telefono,idUser")] Customer_ customer_)
         {
-
-             string fileName = Path.GetFileNameWithoutExtension(product_.productImageFile.FileName);
-            string extension = Path.GetExtension(product_.productImageFile.FileName);
-            fileName = fileName + DateTime.Now.ToString("yymmfff") + extension;
-            product_.productImage = "../image/" + fileName;
-            fileName = Path.Combine(Server.MapPath("~/image/"),fileName);
-            product_.productImageFile.SaveAs(fileName);
             if (ModelState.IsValid)
             {
-                db.Product_.Add(product_);
+                db.Customer_.Add(customer_);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.idEditorial = new SelectList(db.Editorial_, "idEditorial", "idEditorial", product_.idEditorial);
-            return View(product_);
+            ViewBag.idUser = new SelectList(db.User_, "idUsuario", "userName", customer_.idUser);
+            return View(customer_);
         }
 
-        // GET: Product_/Edit/5
+        // GET: Customer_/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product_ product_ = await db.Product_.FindAsync(id);
-            if (product_ == null)
+            Customer_ customer_ = await db.Customer_.FindAsync(id);
+            if (customer_ == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.idEditorial = new SelectList(db.Editorial_, "idEditorial", "idEditorial", product_.idEditorial);
-            return View(product_);
+            ViewBag.idUser = new SelectList(db.User_, "idUsuario", "userName", customer_.idUser);
+            return View(customer_);
         }
 
-        // POST: Product_/Edit/5
+        // POST: Customer_/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "idProduct,productName,Sku,stock,productDescription,idEditorial,price,productImage")] Product_ product_)
+        public async Task<ActionResult> Edit([Bind(Include = "idCustomer,Dirrecion,Telefono,idUser")] Customer_ customer_)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(product_).State = EntityState.Modified;
+                db.Entry(customer_).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.idEditorial = new SelectList(db.Editorial_, "idEditorial", "idEditorial", product_.idEditorial);
-            return View(product_);
+            ViewBag.idUser = new SelectList(db.User_, "idUsuario", "userName", customer_.idUser);
+            return View(customer_);
         }
 
-        // GET: Product_/Delete/5
+        // GET: Customer_/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product_ product_ = await db.Product_.FindAsync(id);
-            if (product_ == null)
+            Customer_ customer_ = await db.Customer_.FindAsync(id);
+            if (customer_ == null)
             {
                 return HttpNotFound();
             }
-            return View(product_);
+            return View(customer_);
         }
 
-        // POST: Product_/Delete/5
+        // POST: Customer_/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Product_ product_ = await db.Product_.FindAsync(id);
-            db.Product_.Remove(product_);
+            Customer_ customer_ = await db.Customer_.FindAsync(id);
+            db.Customer_.Remove(customer_);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

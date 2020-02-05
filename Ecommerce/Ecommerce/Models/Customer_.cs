@@ -21,9 +21,10 @@ namespace Ecommerce.Models
         }
     
         public int idCustomer { get; set; }
-        public string Dirrecion { get; set; }
-        public byte[] Telefono { get; set; }
         public Nullable<int> idUser { get; set; }
+        public string Telefono { get; set; }
+        public string Cedula { get; set; }
+        public string Dirrecion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order_> Order_ { get; set; }

@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Index</h2>
@@ -12,22 +13,43 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Customer_.userName)
+            @Html.DisplayNameFor(model => model.Customer_.User_.firstName)
         </th>
-        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer_.Telefono)
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer_.Cedula)
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer_.d)
+
+        </th>
+        <th>Edit</th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer_.userName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idOrder }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idOrder }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idOrder })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Customer_.User_.firstName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Customer_.Telefono)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Customer_.Cedula)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Customer_.Dirrecion)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.idOrder }) |
+        @Html.ActionLink("Details", "Details", new { id = item.idOrder }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.idOrder })
+    </td>
+</tr>
 }
 
 </table>

@@ -15,7 +15,7 @@ namespace Ecommerce.Controllers
 {
     public class ProductController : Controller
     {
-        private EcommerceECDBEntities1 db = new EcommerceECDBEntities1();
+        private EcommerceECDBEntities2 db = new EcommerceECDBEntities2();
       
         // GET: Product
         public async Task<ActionResult> Index()

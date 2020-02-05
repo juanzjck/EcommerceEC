@@ -13,7 +13,7 @@ namespace Ecommerce.Controllers
 {
     public class Order_Controller : Controller
     {
-        private EcommerceECDBEntities1 db = new EcommerceECDBEntities1();
+        private EcommerceECDBEntities2 db = new EcommerceECDBEntities2();
 
         // GET: Order_
         public async Task<ActionResult> Index()
@@ -40,7 +40,7 @@ namespace Ecommerce.Controllers
         // GET: Order_/Create
         public ActionResult Create()
         {
-            ViewBag.idCustomer = new SelectList(db.Customer_, "idCustomer", "userName");
+            ViewBag.idCustomer = new SelectList(db.Customer_, "idCustomer", "Telefono");
             return View();
         }
 
@@ -58,7 +58,7 @@ namespace Ecommerce.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.idCustomer = new SelectList(db.Customer_, "idCustomer", "userName", order_.idCustomer);
+            ViewBag.idCustomer = new SelectList(db.Customer_, "idCustomer", "Telefono", order_.idCustomer);
             return View(order_);
         }
 
@@ -74,7 +74,7 @@ namespace Ecommerce.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.idCustomer = new SelectList(db.Customer_, "idCustomer", "userName", order_.idCustomer);
+            ViewBag.idCustomer = new SelectList(db.Customer_, "idCustomer", "Telefono", order_.idCustomer);
             return View(order_);
         }
 
@@ -91,7 +91,7 @@ namespace Ecommerce.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.idCustomer = new SelectList(db.Customer_, "idCustomer", "userName", order_.idCustomer);
+            ViewBag.idCustomer = new SelectList(db.Customer_, "idCustomer", "Telefono", order_.idCustomer);
             return View(order_);
         }
 

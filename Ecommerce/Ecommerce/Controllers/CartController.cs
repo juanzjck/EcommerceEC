@@ -10,7 +10,7 @@ namespace Ecommerce.Controllers
     public class CartController : Controller
     {
         List<Order_preorder> products_OnCart = new List<Order_preorder>();
-        private EcommerceECDBEntities1 db = new EcommerceECDBEntities1();
+        private EcommerceECDBEntities2 db = new EcommerceECDBEntities2();
         // GET: Cart
         public async Task<ActionResult> Index()
         {
@@ -99,7 +99,16 @@ namespace Ecommerce.Controllers
 
                 if (Session["autho"].Equals("true"))
                 {
-                    return View();
+                    if (findCustomer() != null)
+                    {
+
+                        return View(findCustomer());
+                    }
+                    else
+                    {
+                        return View();
+                    }
+                  
                 }
                 else {
                     return RedirectToAction("login", "User_");
@@ -115,7 +124,68 @@ namespace Ecommerce.Controllers
          
            
         }
+        public Customer_ findCustomer() {
+            foreach (Customer_ c in db.Customer_.ToList())
+            {
+                if (((User_)Session["user"]).idUsuario.Equals(c.idUser))
+                {
+                    return c;
+                }
+            }
+            return null;
+        }
+        public int genetrateIdOrder() {
+            int id = 0;
+            foreach ( Customer_ c in db.Customer_.ToList()) {
+                id = c.idCustomer + 1;
+            }
+            return id;
+        }
+        [HttpPost]
+        public async Task<ActionResult> purchase(Customer_ customer) {
 
+            if (findCustomer() != null && findCustomer().Cedula.Equals(customer.Cedula))
+            {
+                Order_ order = new Order_();
+                order.idCustomer = findCustomer().idCustomer;
+                db.Order_.Add(order);
+                await db.SaveChangesAsync();
+                foreach (Order_preorder p in (List<Order_preorder>)Session["ProductsOnCart"]) {
+                    Order_Detail order_detail = new Order_Detail();
+                    order_detail.idOrder = order.idOrder;
+                    order_detail.idProduct = p.idProduct;
+                    order_detail.quantity = p.quantity;
+                    db.Order_Detail.Add(order_detail);
+                    await db.SaveChangesAsync();
+                }
+                return View();
+            }
+            else
+            {
+                customer.idUser = ((User_)Session["user"]).idUsuario;
+                customer.idCustomer = genetrateIdOrder();
+                db.Customer_.Add(customer);
+                await db.SaveChangesAsync();
+                Order_ order = new Order_();
+                order.idCustomer = customer.idCustomer;
+                db.Order_.Add(order);
+                await db.SaveChangesAsync();
+                foreach (Order_preorder p in (List<Order_preorder>)Session["ProductsOnCart"])
+                {
+                    Order_Detail order_detail = new Order_Detail();
+                    order_detail.idOrder = order.idOrder;
+                    order_detail.idProduct = p.idProduct;
+                    order_detail.quantity = p.quantity;
+                    db.Order_Detail.Add(order_detail);
+                    await db.SaveChangesAsync();
+                }
+
+                return View();
+            }
+           
+        }
+
+      
 
     }
 }

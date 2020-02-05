@@ -13,7 +13,7 @@ namespace Ecommerce.Controllers
 {
     public class User_Controller : Controller
     {
-        private EcommerceECDBEntities1 db = new EcommerceECDBEntities1();
+        private EcommerceECDBEntities2 db = new EcommerceECDBEntities2();
 
         // GET: User_
         public async Task<ActionResult> Index()
